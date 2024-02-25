@@ -34,7 +34,7 @@ class TaskListScreen extends StatelessWidget {
           context: context,
           builder: (BuildContext context) => Container(
             padding: const EdgeInsets.all(15.0),
-            height: 600,
+            height: 500,
             color: Colors.green[200],
             child: Column(
               children: [
@@ -76,12 +76,12 @@ class TaskListScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 8.0,
+                  height: 20.0,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 5.0),
                   width: MediaQuery.of(context).size.width,
-                  height: 200.0,
+                  // height: 200.0,
                   child: Row(
                     children: [
                       Container(
