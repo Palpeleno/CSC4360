@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
 
 //imported utility packages
 import 'dart:convert';
@@ -20,6 +20,7 @@ class TaskListScreen extends StatefulWidget {
 class _TaskListScreenState extends State<TaskListScreen> {
   var _TaskListScreenController;
   late List<Task> _tasks;
+  late List<bool> _tasksDone;
 
   // save individual notes that are activiely been worked on... not functioning
   Future<void> saveData() async {
@@ -57,6 +58,9 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
     // ignore: avoid_print
     print(_tasks);
+
+    _tasksDone = List.generate(_tasks.length, (index) => false);
+    setState(() {});
   }
 
   @override
@@ -118,9 +122,13 @@ class _TaskListScreenState extends State<TaskListScreen> {
                               style: GoogleFonts.comicNeue(),
                             ),
                             Checkbox(
-                              value: false,
+                              value: _tasksDone[_tasks.indexOf(e)],
                               key: GlobalKey(),
-                              onChanged: (bool? value) {},
+                              onChanged: (val) {
+                                setState(() {
+                                  _tasksDone[_tasks.indexOf(e)] = val!;
+                                });
+                              },
                             ),
                           ],
                         ),
