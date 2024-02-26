@@ -2,14 +2,41 @@
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import './home_screen.dart';
 
-class TaskListScreen extends StatelessWidget {
+class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
   static const routeName = '/home-screen';
 
   @override
+  _TaskListScreenState createState() => _TaskListScreenState();
+}
+
+class _TaskListScreenState extends State<TaskListScreen> {
+  var _TaskListScreenController;
+
+  Future<void> saveData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _TaskListScreenController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _TaskListScreenController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -33,8 +60,8 @@ class TaskListScreen extends StatelessWidget {
         onPressed: () => showModalBottomSheet(
           context: context,
           builder: (BuildContext context) => Container(
-            padding: const EdgeInsets.all(15.0),
-            height: 500,
+            padding: const EdgeInsets.all(10.0),
+            height: 250,
             color: Colors.green[200],
             child: Column(
               children: [
@@ -64,6 +91,7 @@ class TaskListScreen extends StatelessWidget {
                   height: 20.0,
                 ),
                 TextField(
+                  controller: _TaskListScreenController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -93,7 +121,7 @@ class TaskListScreen extends StatelessWidget {
                             'RESET',
                             style: GoogleFonts.montserrat(),
                           ),
-                          onPressed: () => print('reset pressed'),
+                          onPressed: () => _TaskListScreenController.text = '',
                         ),
                       ),
                       Container(
@@ -104,7 +132,7 @@ class TaskListScreen extends StatelessWidget {
                             'ADD',
                             style: GoogleFonts.montserrat(),
                           ),
-                          onPressed: () => print('add pressed'),
+                          onPressed: () => saveData,
                         ),
                       ),
                     ],
