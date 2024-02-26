@@ -88,9 +88,45 @@ class _TaskListScreenState extends State<TaskListScreen> {
           ),
         ),
       ),
-      body: Center(
-        child: Text("No Tasks added yet!"),
-      ),
+      // ignore: unnecessary_null_comparison
+      body: (_tasks == null)
+          ? Center(
+              child: Text("No Tasks added yet!"),
+              // conditoinal rendering keeping a no task added widget and only renders if there are new tasks added
+            )
+          : Column(
+              children: _tasks
+                  .map((e) => Container(
+                        height: 70.0,
+                        width: MediaQuery.of(context).size.width,
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 5.0),
+                        padding: const EdgeInsets.only(left: 10.0),
+                        alignment: Alignment.centerLeft,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5.0),
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 0.5,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              e.task,
+                              style: GoogleFonts.comicNeue(),
+                            ),
+                            Checkbox(
+                              value: false,
+                              key: GlobalKey(),
+                              onChanged: (bool? value) {},
+                            ),
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.add,
