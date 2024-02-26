@@ -60,7 +60,7 @@ class MyHomePage extends StatelessWidget {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _search,
-              child: const Text('query by ID'),
+              child: const Text('search'),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -115,15 +115,15 @@ class MyHomePage extends StatelessWidget {
 // record in the database using its ID number.
   void _search() async {
     final id = await dbHelper.queryRowCount();
-    final rowsSearch = await dbHelper.search(id);
-    debugPrint('searched $rowsSearch')
+    // final rowsSearch = await dbHelper._search(id);
+    // debugPrint('searched $rowsSearch row(s): row$id');
   }
 
 //Delete all Records
 // Create a function that will enable you to remove all records from the database
   void _nukeRecords() async {
     final id = await dbHelper.queryRowCount();
-    final rowsDeleted = await dbHelper.delete(id);
-    debugPrint('deleted' $allRow)
+    // final rowsDeleted = await dbHelper.delete(id);
+    // debugPrint('deleted $allRow row(s): row$id');
   }
 }

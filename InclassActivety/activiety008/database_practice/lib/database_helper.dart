@@ -76,4 +76,20 @@ $columnAge INTEGER NOT NULL
       whereArgs: [id],
     );
   }
+
+  Future<int> nukeAll(int id) async {
+    return await _db.delete(
+      table,
+      where: '$columnId = ?',
+      whereArgs: [id],
+    );
+  }
+
+  // Future<int> _search(int id) async {
+  //   return await _db.lookup(
+  //     table,
+  //     where: '$columnId = ?',
+  //     whereArgs: [id],
+  //   );
+  // }
 }
