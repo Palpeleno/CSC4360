@@ -113,12 +113,17 @@ class MyHomePage extends StatelessWidget {
 // Query by ID
 // Create a function that will allow you to search for a specific
 // record in the database using its ID number.
-  void _search() {
-
+  void _search() async {
+    final id = await dbHelper.queryRowCount();
+    final rowsSearch = await dbHelper.search(id);
+    debugPrint('searched $rowsSearch')
   }
 
 //Delete all Records
 // Create a function that will enable you to remove all records from the database
-  void _nukeRecords() {
+  void _nukeRecords() async {
+    final id = await dbHelper.queryRowCount();
+    final rowsDeleted = await dbHelper.delete(id);
+    debugPrint('deleted' $allRow)
   }
 }
