@@ -19,6 +19,7 @@ class TaskListScreen extends StatefulWidget {
 
 class _TaskListScreenState extends State<TaskListScreen> {
   var _TaskListScreenController;
+  late List<Task> _tasks;
 
   // save individual notes that are activiely been worked on... not functioning
   Future<void> saveData() async {
@@ -26,7 +27,7 @@ class _TaskListScreenState extends State<TaskListScreen> {
     Task t = Task.fromString(_TaskListScreenController.text);
     // obtains datastructure of words in text field "ie:map" of notet text as var t of task
     // store list of task, so every added list is added to list then retrved to save prefs
-    // some ide fix aking var tasks null -> "String?" -> fixed the error 
+    // some ide fix aking var tasks null -> "String?" -> fixed the error
     String? tasks = prefs.getString('task');
     // ignore: unnecessary_null_comparison
     List list = (tasks == null) ? [] : json.decode(tasks);
@@ -41,11 +42,30 @@ class _TaskListScreenState extends State<TaskListScreen> {
     Navigator.of(context).pop();
   }
 
+  // encodes string to a list then to a map
+  Future<void> _getTask() async {
+    _tasks = [];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? tasks = prefs.getString('task');
+    // ignore: unnecessary_null_comparison
+    List list = (tasks == null) ? [] : json.decode(tasks);
+    for (dynamic d in list) {
+      // ignore: avoid_print
+      print(d.runtimeType);
+      _tasks.add(Task.fromMap(json.decode(d)));
+    }
+
+    // ignore: avoid_print
+    print(_tasks);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _TaskListScreenController = TextEditingController();
+
+    _getTask();
   }
 
   @override
