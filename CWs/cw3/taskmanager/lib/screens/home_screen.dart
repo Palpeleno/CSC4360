@@ -26,13 +26,18 @@ class _TaskListScreenState extends State<TaskListScreen> {
     Task t = Task.fromString(_TaskListScreenController.text);
     // obtains datastructure of words in text field "ie:map" of notet text as var t of task
     // store list of task, so every added list is added to list then retrved to save prefs
-    String tasks = prefs.getString('task');
+    // some ide fix aking var tasks null -> "String?" -> fixed the error 
+    String? tasks = prefs.getString('task');
+    // ignore: unnecessary_null_comparison
     List list = (tasks == null) ? [] : json.decode(tasks);
+    // ignore: avoid_print
     print(list);
     list.add(json.encode(t.getMap()));
+    // ignore: avoid_print
     print(list);
     prefs.setString('task', json.encode(list));
     _TaskListScreenController.text = '';
+    // ignore: use_build_context_synchronously
     Navigator.of(context).pop();
   }
 
