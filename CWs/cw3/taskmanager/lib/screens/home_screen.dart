@@ -1,9 +1,13 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, prefer_const_literals_to_create_immutables
 
-import 'package:google_fonts/google_fonts.dart';
+//imported utility packages
+import 'dart:convert';
 import 'package:flutter/material.dart';
+// imported packages from web foreign packges
+import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import './home_screen.dart';
+// imported domestic file screens
+import '../model/task.dart';
 
 class TaskListScreen extends StatefulWidget {
   const TaskListScreen({super.key});
@@ -16,8 +20,20 @@ class TaskListScreen extends StatefulWidget {
 class _TaskListScreenState extends State<TaskListScreen> {
   var _TaskListScreenController;
 
+  // save individual notes that are activiely been worked on... not functioning
   Future<void> saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    Task t = Task.fromString(_TaskListScreenController.text);
+    // obtains datastructure of words in text field "ie:map" of notet text as var t of task
+    // store list of task, so every added list is added to list then retrved to save prefs
+    String tasks = prefs.getString('task');
+    List list = (tasks == null) ? [] : json.decode(tasks);
+    print(list);
+    list.add(json.encode(t.getMap()));
+    print(list);
+    prefs.setString('task', json.encode(list));
+    _TaskListScreenController.text = '';
+    Navigator.of(context).pop();
   }
 
   @override
@@ -36,7 +52,6 @@ class _TaskListScreenState extends State<TaskListScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
