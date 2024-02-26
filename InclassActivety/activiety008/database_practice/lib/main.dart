@@ -57,6 +57,16 @@ class MyHomePage extends StatelessWidget {
               onPressed: _delete,
               child: const Text('delete'),
             ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _search,
+              child: const Text('query by ID'),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: _nukeRecords,
+              child: const Text('Nuke records'),
+            ),
           ],
         ),
       ),
@@ -98,5 +108,17 @@ class MyHomePage extends StatelessWidget {
     final id = await dbHelper.queryRowCount();
     final rowsDeleted = await dbHelper.delete(id);
     debugPrint('deleted $rowsDeleted row(s): row$id');
+  }
+
+// Query by ID
+// Create a function that will allow you to search for a specific
+// record in the database using its ID number.
+  void _search() {
+
+  }
+
+//Delete all Records
+// Create a function that will enable you to remove all records from the database
+  void _nukeRecords() {
   }
 }
