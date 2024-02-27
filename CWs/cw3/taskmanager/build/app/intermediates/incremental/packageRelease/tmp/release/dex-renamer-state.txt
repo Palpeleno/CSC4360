@@ -1,4 +1,0 @@
-#Sun Feb 25 23:53:20 EST 2024
-base.0=C\:\\Users\\islay\\Local_Documents\\Repository\\CSC4360_MAD\\CSC4360_BlursedBurger\\CWs\\cw3\\taskmanager\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
