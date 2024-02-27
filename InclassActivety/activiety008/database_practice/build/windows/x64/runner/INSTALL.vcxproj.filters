@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\islay\Local_Documents\Repository\CSC4360_MAD\CSC4360_BlursedBurger\InclassActivety\activiety008\database_practice\build\windows\x64\CMakeFiles\ab1e8e4a6307d5909a4506aca16c3c00\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FF6D223F-F0E7-30C7-9B73-ADDFA1385767}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
