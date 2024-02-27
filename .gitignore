@@ -2,19 +2,19 @@
 *.class
 *.log
 *.pyc
-*.swp
-.DS_Store
-.atom/
-.buildlog/
-.history
-.svn/
-migrate_working_dir/
+# *.swp
+# .DS_Store
+# .atom/
+# .buildlog/
+# .history
+# .svn/
+# migrate_working_dir/
 
 # IntelliJ related
-*.iml
-*.ipr
-*.iws
-.idea/
+# *.iml
+# *.ipr
+# *.iws
+# .idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -43,34 +43,34 @@ app.*.map.json
 /android/app/release
 
 
-# Default ignored files
+#### Default ignored files
 /shelf/
 /workspace.xml
 .idea
 
 
-#flutter
+#### flutter
 # See https://www.dartlang.org/guides/libraries/private-files
 
-# Files and directories created by pub
+#### Files and directories created by flutter pub
 .dart_tool/
 .packages
 build/
 .idea/
-android/
-ios/
-linux/
-macros/
-macos/
-test/
-web/
-windows/
+# android/
+# ios/
+# linux/
+# macros/
+# macos/
+# test/
+# web/
+# windows/
 .metadata
 .analysis_options.ymal
 analysis_options.ymal/
 
-# If you're building an application, you may want to check-in your pubspec.lock
-pubspec.lock
+#### If you're building an application, you may want to check-in your pubspec.lock
+# pubspec.lock
 
 # Directory created by dartdoc
 # If you don't generate documentation locally you can remove this line.

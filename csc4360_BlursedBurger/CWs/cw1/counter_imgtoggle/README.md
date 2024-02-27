@@ -1,15 +1,10 @@
-# counter_imagetoggle
+# pw1
 
 A new Flutter project.
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
-
-- this app is a counter that counts the amount of times a picture has toggled to another
-included is the 'pubspec.yaml' file 
-and 'assets' for the images
-
 
 A few resources to get you started if this is your first Flutter project:
 
