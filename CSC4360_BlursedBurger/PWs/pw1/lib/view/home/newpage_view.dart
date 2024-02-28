@@ -18,7 +18,7 @@ class _NewJournalPageViewState extends State<NewJournalPageView> {
     return Scaffold(
       appBar: AppBar(
         // $title\ in the app bar titile when naming a new journal page
-        title: const Text('journal page title'),
+        title: const Text('journal page title '),
       ),
       backgroundColor: Colors.blueGrey,
       body: SingleChildScrollView(
