@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
 class CardListWidget extends StatelessWidget {
   final CardService cardService;
 
-  CardListWidget({required this.cardService});
+  const CardListWidget({super.key, required this.cardService});
 
   @override
   Widget build(BuildContext context) {
@@ -62,28 +62,25 @@ class CardWidget extends StatelessWidget {
   final VoidCallback onDelete;
   final Function(CardModel) onUpdate;
 
-  CardWidget(
-      {required this.card, required this.onDelete, required this.onUpdate});
+  const CardWidget(
+      {super.key,
+      required this.card,
+      required this.onDelete,
+      required this.onUpdate});
 
-  @override
   Future<Widget> cardUI(BuildContext context) async {
     return Scaffold();
-    //   // Implement UI for displaying card details
-    //   // You can include options for updating and deleting cards
+    // Implement UI for displaying card details
   }
 
-  @override
   Future<Widget> handSelecter(BuildContext context) async {
     return Scaffold();
-    //   // Implement UI for displaying card details
-    //   // You can include options for updating and deleting cards
+    // You can include options for updating cards
   }
 
-  @override
   Future<Widget> deleteCards(BuildContext context) async {
     return Scaffold();
-    //   // Implement UI for displaying card details
-    //   // You can include options for updating and deleting cards
+    //You can include options for deleting cards
   }
 
   @override
