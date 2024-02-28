@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\islay\Local_Documents\Repository\CSC4360_MAD\CSC4360_BlursedBurger\InclassActivety\activiety008\database_practice\build\windows\x64\CMakeFiles\b2692b5eadb5b71d5b6e97fe59515c0d\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\islay\Local_Documents\Repository\CSC4360_MAD\CSC4360_BlursedBurger\InclassActivety\activiety008\database_practice\build\windows\x64\CMakeFiles\65c2bc10e1a8f875078f58fcba340aeb\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\islay\Local_Documents\Repository\CSC4360_MAD\CSC4360_BlursedBurger\InclassActivety\activiety008\database_practice\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\islay\Local_Documents\Repository\CSC4360_MAD\CSC4360_BlursedBurger\InclassActivety\activiety008\database_practice\build\windows\x64\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{FF6D223F-F0E7-30C7-9B73-ADDFA1385767}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
