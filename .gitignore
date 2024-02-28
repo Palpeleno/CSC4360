@@ -65,9 +65,6 @@ build/
 # test/
 # web/
 # windows/
-.metadata
-# .analysis_options.ymal
-# analysis_options.ymal/
 
 #### If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
