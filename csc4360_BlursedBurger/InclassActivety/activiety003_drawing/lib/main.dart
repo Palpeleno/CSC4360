@@ -107,7 +107,6 @@ class SmileyPainter extends CustomPainter {
     final paint = Paint()..color = Colors.yellow;
     canvas.drawCircle(center, radius, paint);
 
-  
     // Draw the mouth
     final smilePaint = Paint().style = PaintingStyle.stroke;
     canvas.drawArc(
