@@ -1,5 +1,5 @@
 import 'dart:collection';
-import './card_model.dart';
+import './card_photo_helper.dart';
 
 class CardService {
   List<CardModel> _hand = [];

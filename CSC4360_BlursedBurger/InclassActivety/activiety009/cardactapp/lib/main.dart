@@ -2,9 +2,9 @@
 
 import 'dart:async';
 
+import 'package:cardhandgame/card_service.dart';
 import 'package:flutter/material.dart';
-import 'card_model.dart';
-import 'card_service.dart';
+import './card_photo_helper.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,18 +17,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Cards Activity App'),
-        ),
-        body: CardListWidget(cardService: _cardService),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Navigate to a screen to add a new card
-            // You can use Navigator.push and MaterialPageRoute for navigation
-          },
-          child: Icon(Icons.add),
-        ),
-      ),
+          appBar: AppBar(
+            title: Text('Cards Activity App'),
+          ),
+          body: CardListWidget(cardService: _cardService),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              // Navigate to a screen to add a new card
+              // You can use Navigator.push and MaterialPageRoute for navigation
+            },
+            child: Icon(Icons.add),
+          ),
+          drawer: Stack()),
     );
   }
 }
@@ -68,21 +68,41 @@ class CardWidget extends StatelessWidget {
       required this.onDelete,
       required this.onUpdate});
 
-  Future<Widget> cardUI(BuildContext context) async {
-    return Scaffold();
-    // Implement UI for displaying card details
-  }
+  // Future<Widget> addCard(BuildContext context) async {
+  //   return Scaffold();
+  //   // Implement UI for displaying card details
+  // }
 
-  Future<Widget> handSelecter(BuildContext context) async {
-    return Scaffold();
-    // You can include options for updating cards
-  }
+  // Future<Widget> updateCard(BuildContext context) async {
+  //   return Scaffold();
+  //   // You can include options for updating cards
+  // }
 
-  Future<Widget> deleteCards(BuildContext context) async {
-    return Scaffold();
-    //You can include options for deleting cards
-  }
+  // Future<Widget> deleteCard(BuildContext context) async {
+  //   return Scaffold();
+  //   //You can include options for deleting cards
+  // }
 
+  // @override
+  // Future<Widget> CardService(BuildContext context) async {
+  //   gridView() {
+  //     return Padding(
+  //       padding: EdgeInsets.all(5.0),
+  //       child: GridView.count(
+  //         crossAxisCount: 2,
+  //         childAspectRatio: 1.0,
+  //         mainAxisSpacing: 4.0,
+  //         crossAxisSpacing: 4.0,
+  //         children: images.map((photo) {
+  //           print("photo name");
+  //           print(photo.photoName);
+  //           return Utility.imageFromBase64String(photo.photoName ?? "");
+  //         }).toList(),
+  //       ),
+  //     );
+  //   }
+  // }
+  
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
