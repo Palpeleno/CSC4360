@@ -30,11 +30,14 @@ class Game {
   // stroes the first clecked card and checks if they match
   List<Map<int, String>> matchCheck = [];
 
-  final int cardCount = 0;
+  final int cardCount = 20;
 
   //init the game
 
   void initGame() {
+    // TODO
+    // gameImg = List.generate(card_list.length, (index) => hiddenCardpath);
+
     gameImg = List.generate(cardCount, (index) => hiddenCardpath);
   }
 }

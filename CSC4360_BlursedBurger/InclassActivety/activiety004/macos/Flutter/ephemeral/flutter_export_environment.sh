@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\islay\AppData\Local\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\islay\Documents\Local_Repo\CSC4360\CSC4360_BlursedBurger\InclassActivety\activiety004"
+export "FLUTTER_ROOT=C:\Users\islay\flutter_windows_3.16.8-stable\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Users\islay\Local_Documents\Repository\CSC4360_MAD\CSC4360_BlursedBurger\InclassActivety\activiety004"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

@@ -2,15 +2,15 @@
 //prefer_const_literals_to_create_immutables, use_super_parameters
 
 import 'package:flutter/material.dart';
-import 'package:hw2/widgets/score_board.dart';
-import './utils/game_logic.dart';
+import 'package:hw3/widgets/score_board.dart';
+import 'package:hw3/utils/game_logic.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -30,7 +30,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 //  initiate game
 
-  Game _game = Game();
+  final Game _game = Game();
 
 //game stats
   int tries = 0;
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     // game board covers screen width
-    double screen_width = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       // theme
@@ -72,19 +72,19 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             //for scoreboard
             children: [
-              scoreBoard("Tries", "{$tries}"),
-              scoreBoard("Score", "{$score}"),
+              scoreBoard("Tries", "$tries"),
+              scoreBoard("Score", "$score"),
             ],
           ),
           SizedBox(
-            height: screen_width,
-            width: screen_width,
+            height: screenWidth,
+            width: screenWidth,
             child: GridView.builder(
                 itemCount: _game.gameImg!.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 16.0,
-                  mainAxisSpacing: 16.0,
+                  crossAxisCount: 5,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
                 ),
                 padding: EdgeInsets.all(16.0),
                 itemBuilder: (context, index) {
@@ -119,9 +119,9 @@ class _HomePageState extends State<HomePage> {
                         }
                       },
                       child: Container(
-                        padding: EdgeInsets.all(16.0),
+                        padding: EdgeInsets.all(8.0),
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 30, 45, 61),
+                          color: Color(0xFFFFB46A),
                           borderRadius: BorderRadius.circular(8.0),
                           image: DecorationImage(
                             image: AssetImage(_game.gameImg![index]),
