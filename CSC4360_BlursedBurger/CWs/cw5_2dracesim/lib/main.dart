@@ -1,19 +1,58 @@
-import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flame/game.dart';
-import 'package:flutter/material.dart';
 import 'package:flame/parallax.dart';
+import 'package:flutter/material.dart';
+import 'package:flame/components.dart';
+import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 
-class Player extends SpriteAnimationComponent
-    with HasGameReference<PalRacingGame> {
-  Player()
-      : super(
-          // size: Vector2(56.42, 154.75),
-          size: Vector2(378, 971),
+void main() {
+  runApp(GameWidget(game: SpaceShooterGame()));
+}
 
+class Bullet extends SpriteAnimationComponent
+    with HasGameReference<SpaceShooterGame> {
+  Bullet({
+    super.position,
+  }) : super(
+          size: Vector2(25, 50),
           anchor: Anchor.center,
         );
 
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+
+    animation = await game.loadSpriteAnimation(
+      '../images/actionstuff/megaman_bullet.png', //addimage
+      SpriteAnimationData.sequenced(
+        amount: 4,
+        stepTime: .2,
+        textureSize: Vector2(8, 16),
+      ),
+    );
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    position.y += dt * -500;
+
+    if (position.y < -height) {
+      removeFromParent();
+    }
+  }
+}
+
+class Player extends SpriteAnimationComponent
+    with HasGameReference<SpaceShooterGame> {
+  Player()
+      : super(
+          size: Vector2(100, 150),
+          anchor: Anchor.center,
+        );
+
+  late final SpawnComponent _bulletSpawner;
   @override
   Future<void> onLoad() async {
     await super.onLoad();
@@ -23,22 +62,50 @@ class Player extends SpriteAnimationComponent
       SpriteAnimationData.sequenced(
         amount: 4,
         stepTime: .2,
-        textureSize: Vector2(32, 48),
+        textureSize: Vector2(100, 481),
       ),
     );
+
     position = game.size / 2;
+    _bulletSpawner = SpawnComponent(
+      period: .2,
+      selfPositioning: true,
+      factory: (index) {
+        return Bullet(
+          position: position +
+              Vector2(
+                0,
+                -height / 2,
+              ),
+        );
+        //return bullet;
+      },
+      autoStart: false,
+    );
+    game.add(_bulletSpawner);
+  }
+
+  void move(Vector2 delta) {
+    position.add(delta);
+  }
+
+  void startShooting() {
+    _bulletSpawner.timer.start();
+  }
+
+  void stopShooting() {
+    _bulletSpawner.timer.stop();
   }
 }
 
-class PalRacingGame extends FlameGame with PanDetector {
+class SpaceShooterGame extends FlameGame with PanDetector {
   late Player player;
 
   @override
   Future<void> onLoad() async {
     final parallax = await loadParallaxComponent(
       [
-        ParallaxImageData('tracks/racer_track'),
-        ParallaxImageData('tracks/src/asphalt.svg'),
+        ParallaxImageData('../images/tracks/racer_track.png'),
       ],
       baseVelocity: Vector2(0, -5),
       repeat: ImageRepeat.repeat,
@@ -52,14 +119,16 @@ class PalRacingGame extends FlameGame with PanDetector {
 
   @override
   void onPanUpdate(DragUpdateInfo info) {
-    // player.move(info.delta.global);
+    player.move(info.delta.global);
   }
-}
 
-void main() {
-  runApp(
-    GameWidget(
-      game: PalRacingGame(),
-    ),
-  );
+  @override
+  void onPanStart(DragStartInfo info) {
+    player.startShooting();
+  }
+
+  @override
+  void onPanEnd(DragEndInfo info) {
+    player.stopShooting();
+  }
 }
