@@ -1,9 +1,11 @@
+import 'package:cw5_2dracesim/game/knows_game_size.dart';
 import 'package:flame/components.dart';
 
-class Player extends SpriteComponent {
+class Player extends SpriteComponent with KnowsGameSize {
+  //
   Vector2 _moveDirection = Vector2.zero();
 
-  double _speed = 100;
+  double _speed = 250;
 
   Player({
     Sprite? sprite,
