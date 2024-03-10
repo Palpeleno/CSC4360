@@ -70,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           'assets/images/cars/pitstop_car_3.png',
                           () {
                             setState(() {
-                              selectedCar = 'pitstop_car_3.png';
+                              selectedCar = 'pitstop_car_13.png';
                             });
                           },
                         ),
@@ -162,8 +162,9 @@ class CarOption extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onPressed;
 
+  // ignore: use_super_parameters
   const CarOption({
-    Key? key,
+    Key? key, // Add Key? key here
     required this.imagePath,
     required this.isSelected,
     required this.onPressed,
@@ -179,7 +180,7 @@ class CarOption extends StatelessWidget {
         padding: EdgeInsets.all(screenWidth * 0.03),
         decoration: BoxDecoration(
           border: isSelected
-              ? Border.all(color: const Color.fromARGB(255, 0, 0, 0), width: 2)
+              ? Border.all(color: Color.fromARGB(255, 255, 0, 0), width: 2)
               : null,
           borderRadius: BorderRadius.circular(10),
         ),

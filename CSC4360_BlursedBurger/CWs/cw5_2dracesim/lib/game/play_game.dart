@@ -70,7 +70,7 @@ class Player extends SpriteAnimationComponent
 
   late final SpawnComponent _bulletSpawner;
 
-  Future<void> _loadPlayerSprite(playerImagePath) async {
+  Future<void> _loadPlayerSprite(String playerImagePath) async {
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(
@@ -78,13 +78,15 @@ class Player extends SpriteAnimationComponent
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: 1.0,
-        textureSize: Vector2(354, 971),
+        textureSize: Vector2(66.375, 182.0625),
+        texturePosition: Vector2.zero(),
       ),
     );
 
     position = game.size / 2;
+
     _bulletSpawner = SpawnComponent(
-      period: 1,
+      period: .2,
       selfPositioning: true,
       factory: (index) {
         return Bullet(
@@ -94,10 +96,10 @@ class Player extends SpriteAnimationComponent
                 -height / 2,
               ),
         );
-        //return bullet;
       },
       autoStart: false,
     );
+
     game.add(_bulletSpawner);
   }
 
@@ -128,7 +130,7 @@ class Bullet extends SpriteAnimationComponent
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(
-      '../../images/actionstuff/megaman_bullet.png',
+      'assets/images/hazards/megaman_bullet.png',
       SpriteAnimationData.sequenced(
         amount: 5,
         stepTime: .1,
@@ -172,7 +174,7 @@ class Enemy extends SpriteAnimationComponent
     // print('Enemy loaded'); //debug
 
     animation = await game.loadSpriteAnimation(
-      'hazards/oil-spill.png',
+      'assets/images.hazards/oil-spill.png',
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: .5,

@@ -65,7 +65,12 @@ flutter:
 
     - assets/images/tracks/
     - assets/images/hazards/
-    - assets/images/cars/
+    - assets/images/cars/pitstop_car_3.png
+    - assets/images/cars/pitstop_car_2.png
+    - assets/images/cars/pitstop_car_13.png
+    - assets/images/cars/pitstop_car_16.png
+    - assets/images/cars/pitstop_car_17.png
+    - assets/images/cars/pitstop_car_18.png
   
     # - assets/audio/
     
