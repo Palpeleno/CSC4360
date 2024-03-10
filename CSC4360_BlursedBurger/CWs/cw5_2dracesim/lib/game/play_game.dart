@@ -8,7 +8,7 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 
 void main() {
-  runApp(GameWidget(game: PalRacingGame('pitstop_car_1.png')));
+  runApp(GameWidget(game: PalRacingGame('pitstop_car_3.png')));
 }
 
 class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
@@ -28,7 +28,7 @@ class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
     );
     add(parallax);
 
-    player = Player('$selectedCar');
+    player = Player(selectedCar);
     add(player);
 
     add(
@@ -70,7 +70,7 @@ class Player extends SpriteAnimationComponent
 
   late final SpawnComponent _bulletSpawner;
 
-  Future<void> _loadPlayerSprite(String playerImagePath) async {
+  Future<void> _loadPlayerSprite(playerImagePath) async {
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(

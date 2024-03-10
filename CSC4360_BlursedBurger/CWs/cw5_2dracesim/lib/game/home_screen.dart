@@ -2,7 +2,6 @@
 
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import '../game/play_game.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,43 +56,80 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      buildCarOption(
-                        'assets/images/cars/pitstop_car_3.png',
-                        () {
-                          setState(() {
-                            selectedCar = 'pitstop_car_3.png';
-                          });
-                        },
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: buildCarOption(
+                          'assets/images/cars/pitstop_car_3.png',
+                          () {
+                            setState(() {
+                              selectedCar = 'pitstop_car_3.png';
+                            });
+                          },
+                        ),
                       ),
-                      buildCarOption(
-                        'assets/images/cars/pitstop_car_1.png',
-                        () {
-                          setState(() {
-                            selectedCar = 'pitstop_car_1.png';
-                          });
-                        },
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: buildCarOption(
+                          'assets/images/cars/pitstop_car_16.png',
+                          () {
+                            setState(() {
+                              selectedCar = 'pitstop_car_16.png';
+                            });
+                          },
+                        ),
                       ),
-                      buildCarOption(
-                        'assets/images/cars/pitstop_car_18.png',
-                        () {
-                          setState(() {
-                            selectedCar = 'pitstop_car_18.png';
-                          });
-                        },
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: buildCarOption(
+                          'assets/images/cars/pitstop_car_17.png',
+                          () {
+                            setState(() {
+                              selectedCar = 'pitstop_car_17.png';
+                            });
+                          },
+                        ),
                       ),
-                      buildCarOption(
-                        'assets/images/cars/pitstop_car_2.png',
-                        () {
-                          setState(() {
-                            selectedCar = 'pitstop_car_2.png';
-                          });
-                        },
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: buildCarOption(
+                          'assets/images/cars/pitstop_car_18.png',
+                          () {
+                            setState(() {
+                              selectedCar = 'pitstop_car_18.png';
+                            });
+                          },
+                        ),
+                      ),
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 2.0),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: buildCarOption(
+                          'assets/images/cars/pitstop_car_2.png',
+                          () {
+                            setState(() {
+                              selectedCar = 'pitstop_car_2.png';
+                            });
+                          },
+                        ),
                       ),
                       // Repeat the above block for each car option
                     ],
