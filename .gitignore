@@ -55,7 +55,7 @@ app.*.map.json
 #### Files and directories created by flutter pub
 .dart_tool/
 .packages
-build/
+# build/
 .idea/
 # android/
 # ios/
