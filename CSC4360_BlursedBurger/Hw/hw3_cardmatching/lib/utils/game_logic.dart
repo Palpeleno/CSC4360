@@ -5,6 +5,7 @@ class Game {
   // matching card faces
   final List<String> card_list = [
     // 1st set
+<<<<<<< HEAD
     "assets/img/ODST_Virgil_1.png",
     "assets/img/ODST_Virgil_2.png",
     "assets/img/ODST_Virgil_3.png",
@@ -26,6 +27,29 @@ class Game {
     "assets/img/ODST_Virgil_8.png",
     "assets/img/ODST_Virgil_9.png",
     "assets/img/ODST_Virgil_10.png",
+=======
+    "assets/img/ODST_Virgil_3.png",
+    "assets/img/ODST_Virgil_4.png",
+    "assets/img/ODST_Virgil_9.png",
+    "assets/img/ODST_Virgil_7.png",
+    "assets/img/ODST_Virgil_5.png",
+    "assets/img/ODST_Virgil_1.png",
+    "assets/img/ODST_Virgil_10.png",
+    "assets/img/ODST_Virgil_2.png",
+    "assets/img/ODST_Virgil_6.png",
+    "assets/img/ODST_Virgil_8.png",
+    // 2nd  set
+    "assets/img/ODST_Virgil_2.png",
+    "assets/img/ODST_Virgil_9.png",
+    "assets/img/ODST_Virgil_4.png",
+    "assets/img/ODST_Virgil_1.png",
+    "assets/img/ODST_Virgil_3.png",
+    "assets/img/ODST_Virgil_5.png",
+    "assets/img/ODST_Virgil_7.png",
+    "assets/img/ODST_Virgil_8.png",
+    "assets/img/ODST_Virgil_10.png",
+    "assets/img/ODST_Virgil_6.png",
+>>>>>>> 6a72af78ecced01a4f36ee0d879df4b4f9cf7d08
   ];
   // stroes the first clecked card and checks if they match
   List<Map<int, String>> matchCheck = [];
