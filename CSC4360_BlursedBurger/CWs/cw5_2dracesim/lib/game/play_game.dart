@@ -8,7 +8,7 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 
 void main() {
-  runApp(GameWidget(game: PalRacingGame('.../../pitstop_car_1.png')));
+  runApp(GameWidget(game: PalRacingGame('pitstop_car_1.png')));
 }
 
 class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
