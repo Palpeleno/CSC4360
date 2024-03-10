@@ -8,7 +8,7 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 
 void main() {
-  runApp(GameWidget(game: PalRacingGame('pitstop_car_1.png')));
+  runApp(GameWidget(game: PalRacingGame('.../../pitstop_car_1.png')));
 }
 
 class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
@@ -20,15 +20,15 @@ class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
   Future<void> onLoad() async {
     final parallax = await loadParallaxComponent(
       [
-        ParallaxImageData('/tracks/race_track.png'),
+        ParallaxImageData('tracks/race_track.png'), // Remove the leading slash
       ],
-      baseVelocity: Vector2(0, -200),
+      baseVelocity: Vector2(0, -300),
       repeat: ImageRepeat.repeat,
       velocityMultiplierDelta: Vector2(0, 5),
     );
     add(parallax);
 
-    player = Player('/$selectedCar');
+    player = Player('$selectedCar');
     add(player);
 
     add(
@@ -70,17 +70,17 @@ class Player extends SpriteAnimationComponent
 
   late final SpawnComponent _bulletSpawner;
 
-  Future<void> _loadPlayerSprite(String $playerImagePath) async {
+  Future<void> _loadPlayerSprite(String playerImagePath) async {
     await super.onLoad();
 
-    // animation = await game.loadSpriteAnimation(
-    //   $playerImagePath,
-    //   SpriteAnimationData.sequenced(
-    //     amount: 1,
-    //     stepTime: 1.0,
-    //     textureSize: Vector2(354, 971),
-    //   ),
-    // );
+    animation = await game.loadSpriteAnimation(
+      playerImagePath,
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 1.0,
+        textureSize: Vector2(354, 971),
+      ),
+    );
 
     position = game.size / 2;
     _bulletSpawner = SpawnComponent(
@@ -169,7 +169,7 @@ class Enemy extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    print('Enemy loaded'); //debug
+    // print('Enemy loaded'); //debug
 
     animation = await game.loadSpriteAnimation(
       'hazards/oil-spill.png',
