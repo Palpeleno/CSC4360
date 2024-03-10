@@ -20,7 +20,7 @@ class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
   Future<void> onLoad() async {
     final parallax = await loadParallaxComponent(
       [
-        ParallaxImageData('images/tracks/race_track.png'),
+        ParallaxImageData('/tracks/race_track.png'),
       ],
       baseVelocity: Vector2(0, -200),
       repeat: ImageRepeat.repeat,
@@ -70,17 +70,17 @@ class Player extends SpriteAnimationComponent
 
   late final SpawnComponent _bulletSpawner;
 
-  Future<void> _loadPlayerSprite(String playerImagePath) async {
+  Future<void> _loadPlayerSprite(String $playerImagePath) async {
     await super.onLoad();
 
-    animation = await game.loadSpriteAnimation(
-      playerImagePath,
-      SpriteAnimationData.sequenced(
-        amount: 1,
-        stepTime: 1.0,
-        textureSize: Vector2(354, 971),
-      ),
-    );
+    // animation = await game.loadSpriteAnimation(
+    //   $playerImagePath,
+    //   SpriteAnimationData.sequenced(
+    //     amount: 1,
+    //     stepTime: 1.0,
+    //     textureSize: Vector2(354, 971),
+    //   ),
+    // );
 
     position = game.size / 2;
     _bulletSpawner = SpawnComponent(
@@ -172,7 +172,7 @@ class Enemy extends SpriteAnimationComponent
     print('Enemy loaded'); //debug
 
     animation = await game.loadSpriteAnimation(
-      '../../images/actionstuff/oil-spill.png',
+      'hazards/oil-spill.png',
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: .5,
