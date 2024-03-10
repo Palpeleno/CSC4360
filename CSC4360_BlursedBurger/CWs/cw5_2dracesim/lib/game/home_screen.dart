@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:cw5_2dracesim/game/play_game.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import '../game/play_game.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,7 +11,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String selectedCar = 'player.png'; // Initial selected rocket/player option
+  String selectedCar =
+      'pitstop_car_1.png'; // Initial selected rocket/player option
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Space Shooter Game'),
+        backgroundColor: Colors.red,
+        title: Text('F1 Pal Jank Racing Sim'),
       ),
       body: Stack(
         children: [
@@ -30,8 +33,8 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                    'f1GrandPrixDeMONACO24_tracks_stats.png'), // Replace 'background_image.jpg' with your image asset
-                fit: BoxFit.cover,
+                    '/images/tracks/f1GrandPrixDeMONACO24_tracks_stats.png'), // Replace 'background_image.jpg' with your image asset
+                fit: BoxFit.fitHeight,
               ),
             ),
           ),
@@ -40,41 +43,34 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CarOption(
-                      imagePath: 'assets/images/player.png',
-                      isSelected: selectedCar == 'player.png',
-                      onPressed: () {
-                        setState(() {
-                          selectedCar = 'player.png';
-                        });
-                      },
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: List.generate(
+                      20,
+                      (index) => Container(
+                        margin: EdgeInsets.all(8.0), // Adjust margin as needed
+                        decoration: BoxDecoration(
+                          color: Colors.grey, // Set the background color
+                          borderRadius: BorderRadius.circular(
+                              10.0), // Adjust border radius as needed
+                        ),
+                        child: CarOption(
+                          imagePath:
+                              'assets/images/cars/pitstop_car_${index + 1}.png',
+                          isSelected:
+                              selectedCar == 'pitstop_car_${index + 1}.png',
+                          onPressed: () {
+                            setState(() {
+                              selectedCar = 'pitstop_car_${index + 1}.png';
+                            });
+                          },
+                        ),
+                      ),
                     ),
-                    CarOption(
-                      imagePath: 'assets/images/player2.png',
-                      isSelected: selectedCar == 'player2.png',
-                      onPressed: () {
-                        setState(() {
-                          selectedCar = 'player2.png';
-                        });
-                      },
-                    ),
-                    CarOption(
-                      imagePath: 'assets/images/player3.png',
-                      isSelected: selectedCar == 'player3.png',
-                      onPressed: () {
-                        setState(() {
-                          selectedCar = 'player3.png';
-                        });
-                      },
-                    ),
-                  ],
+                  ),
                 ),
-                SizedBox(
-                    height: screenHeight *
-                        0.1), // Adding space between buttons and the "Start Game" button
+                SizedBox(height: screenHeight * 0.1),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(
@@ -84,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               GameWidget(game: PalRacingGame(selectedCar))),
                     );
                   },
-                  child: Text('Start Game'),
+                  child: Text('Begin Race'),
                 ),
               ],
             ),
@@ -100,7 +96,8 @@ class CarOption extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onPressed;
 
-  CarOption({
+  const CarOption({
+    super.key,
     required this.imagePath,
     required this.isSelected,
     required this.onPressed,
@@ -113,15 +110,14 @@ class CarOption extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        padding: EdgeInsets.all(
-            screenWidth * 0.03), // Adjust padding based on screen width
+        padding: EdgeInsets.all(screenWidth * 0.03),
         decoration: BoxDecoration(
-          border: isSelected ? Border.all(color: Colors.blue, width: 2) : null,
+          border: isSelected
+              ? Border.all(color: const Color.fromARGB(255, 0, 0, 0), width: 2)
+              : null,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Image.asset(imagePath,
-            width:
-                screenWidth * 0.2), // Adjust image size based on screen width
+        child: Image.asset(imagePath, width: screenWidth * 0.2),
       ),
     );
   }

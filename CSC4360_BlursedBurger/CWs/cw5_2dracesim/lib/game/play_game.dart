@@ -8,27 +8,76 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 
 void main() {
-  runApp(GameWidget(game: PalRacingGame('pitstop_car_12.png')));
+  runApp(GameWidget(game: PalRacingGame('pitstop_car_1.png')));
+}
+
+class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
+  late Player player;
+  final String selectedCar;
+  PalRacingGame(this.selectedCar);
+
+  @override
+  Future<void> onLoad() async {
+    final parallax = await loadParallaxComponent(
+      [
+        ParallaxImageData('images/tracks/race_track.png'),
+      ],
+      baseVelocity: Vector2(0, -200),
+      repeat: ImageRepeat.repeat,
+      velocityMultiplierDelta: Vector2(0, 5),
+    );
+    add(parallax);
+
+    player = Player('/$selectedCar');
+    add(player);
+
+    add(
+      SpawnComponent(
+        factory: (index) {
+          return Enemy();
+        },
+        period: 1,
+        area: Rectangle.fromLTWH(0, 0, size.x, -Enemy.enemySize),
+      ),
+    );
+  }
+
+  @override
+  void onPanUpdate(DragUpdateInfo info) {
+    player.move(info.delta.global);
+  }
+
+  @override
+  void onPanStart(DragStartInfo info) {
+    player.startShooting();
+  }
+
+  @override
+  void onPanEnd(DragEndInfo info) {
+    player.stopShooting();
+  }
 }
 
 class Player extends SpriteAnimationComponent
     with HasGameReference<PalRacingGame> {
-  Player()
+  Player(String playerImagePath)
       : super(
           size: Vector2(66.375, 182.0625),
           anchor: Anchor.center,
-        );
+        ) {
+    _loadPlayerSprite(playerImagePath);
+  }
 
   late final SpawnComponent _bulletSpawner;
-  @override
-  Future<void> onLoad() async {
+
+  Future<void> _loadPlayerSprite(String playerImagePath) async {
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(
-      '../../images/cars_ext/pitstop_car_12.png',
+      playerImagePath,
       SpriteAnimationData.sequenced(
         amount: 1,
-        stepTime: 1,
+        stepTime: 1.0,
         textureSize: Vector2(354, 971),
       ),
     );
@@ -47,7 +96,7 @@ class Player extends SpriteAnimationComponent
         );
         //return bullet;
       },
-      autoStart: true,
+      autoStart: false,
     );
     game.add(_bulletSpawner);
   }
@@ -70,7 +119,7 @@ class Bullet extends SpriteAnimationComponent
   Bullet({
     super.position,
   }) : super(
-          size: Vector2(50, 50),
+          size: Vector2(15, 15),
           anchor: Anchor.center,
         );
 
@@ -79,11 +128,17 @@ class Bullet extends SpriteAnimationComponent
     await super.onLoad();
 
     animation = await game.loadSpriteAnimation(
-      '../../images/actionstuff/megaman_bullet.png', //addimage
+      '../../images/actionstuff/megaman_bullet.png',
       SpriteAnimationData.sequenced(
-        amount: 1,
-        stepTime: .5,
-        textureSize: Vector2(8, 16),
+        amount: 5,
+        stepTime: .1,
+        textureSize: Vector2(500, 500),
+      ),
+    );
+
+    add(
+      RectangleHitbox(
+        collisionType: CollisionType.passive,
       ),
     );
   }
@@ -114,26 +169,18 @@ class Enemy extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    print('Enemy loaded');
+    print('Enemy loaded'); //debug
 
     animation = await game.loadSpriteAnimation(
       '../../images/actionstuff/oil-spill.png',
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: .5,
-        textureSize: Vector2.all(100),
+        textureSize: Vector2(100, 100),
       ),
     );
 
-    add(
-      SpawnComponent(
-        factory: (index) {
-          return Enemy();
-        },
-        period: 1,
-        area: Rectangle.fromLTWH(0, 0, size.x, -Enemy.enemySize),
-      ),
-    );
+    add(RectangleHitbox());
   }
 
   @override
@@ -158,42 +205,5 @@ class Enemy extends SpriteAnimationComponent
       removeFromParent();
       other.removeFromParent();
     }
-  }
-}
-
-class PalRacingGame extends FlameGame with PanDetector, HasCollisionDetection {
-  late Player player;
-
-  PalRacingGame(String selectedCar);
-
-  @override
-  Future<void> onLoad() async {
-    final parallax = await loadParallaxComponent(
-      [
-        ParallaxImageData('../../images/tracks/racer_track.png'),
-      ],
-      baseVelocity: Vector2(0, -200),
-      repeat: ImageRepeat.repeat,
-      velocityMultiplierDelta: Vector2(0, 5),
-    );
-    add(parallax);
-
-    player = Player();
-    add(player);
-  }
-
-  @override
-  void onPanUpdate(DragUpdateInfo info) {
-    player.move(info.delta.global);
-  }
-
-  @override
-  void onPanStart(DragStartInfo info) {
-    player.startShooting();
-  }
-
-  @override
-  void onPanEnd(DragEndInfo info) {
-    player.stopShooting();
   }
 }
